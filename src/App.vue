@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <my-global-component></my-global-component>
+  <my-local-component></my-local-component>
+  <show-message></show-message>
+  <select-component></select-component>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axiosInstance from './axios-instance';
+import myLocalComponent from './components/myLocalComponent.vue';
+import showMessage  from './components/showMessage.vue'
+import selectComponent from './components/selectComponent.vue';
+axiosInstance.get('/users/2')
+  .then(response => {
+
+    console.log(response.data);
+  })
+  .catch(error => {
+
+    console.error(error);
+  });
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+     myLocalComponent,
+     showMessage,
+     selectComponent
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
